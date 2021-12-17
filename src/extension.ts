@@ -24,6 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     //add header to all target file with async
     await addHeader(target, user, mail);
+    vscode.window.showInformationMessage('Done! Good luck evaluation!');
   });
 
   context.subscriptions.push(disposable);

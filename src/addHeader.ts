@@ -3,22 +3,15 @@ import * as path from 'path';
 import { makeHeader } from './makeHeader';
 import * as moment from 'moment';
 
-// prettier-ignore
-const headLine = 
-`/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */`;
-
 export async function addHeader(target: vscode.Uri[], user: string, mail: string) {
   const userLen = 9;
   const mailLen = 26;
   const fileNameLen = 41;
 
   for await (const file of target) {
-    // check there is header already, then skip
     const text = await isHeader(file);
     if (text === false) {
-      console.log(`${file.path} is skipped!`);
+      // console.log(`${file.path} is skipped!`);
       continue;
     }
 
@@ -36,14 +29,23 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
   }
 }
 
-// TODO regular expansion "/^\/\* \*{74} \*\/$/"
+// if there is header already, return false. if not return their context.
 async function isHeader(file: vscode.Uri): Promise<string | boolean> {
+  const outsidePattern = new RegExp(/^\/\* \*{74} \*\/$/);
+  const innerPattern = new RegExp(/^\/\* .{74} \*\/$/);
   const content = await vscode.workspace.fs.readFile(file);
   const text = content.toString();
-  if (text.includes(headLine, 0)) {
-    return false;
+  const lines = text.split('\n');
+  for (let i = 0; i < 11; i++) {
+    const line = lines[i];
+    if ((i === 0 || i === 10) && line.match(outsidePattern)) {
+      continue;
+    } else if (line.match(innerPattern)) {
+      continue;
+    }
+    return text;
   }
-  return text;
+  return false;
 }
 
 function modifyLength(str: string, targetLen: number, isMail = false) {
@@ -61,6 +63,5 @@ function modifyLength(str: string, targetLen: number, isMail = false) {
 
 function getFormattedTime(unixTime: number) {
   const dateTime = moment(unixTime);
-  console.log(dateTime.format('YYYY/MM/DD HH:MM:SS'));
-  return dateTime.format('YYYY/MM/DD HH:MM:SS').toString();
+  return dateTime.format('YYYY/MM/DD HH:mm:ss').toString();
 }

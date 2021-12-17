@@ -3,6 +3,7 @@ import { getConfig } from './getConfig';
 import { getTarget } from './getTarget';
 import { addHeader } from './addHeader';
 
+// norm test, publish,
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('42-header-oneshot.addHeader', async () => {
     // get user and mail

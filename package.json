@@ -19,7 +19,21 @@
 				"command": "42-header-oneshot.addHeader",
 				"title": "Add 42 heder to all file in workspace"
 			}
-		]
+		],
+		"configuration": {
+      "title": "42 Header OneShot",
+      "properties": {
+        "42-header-oneshot.user": {
+          "type": "string",
+          "description": "User name override environment variable."
+        },
+        "42-header-oneshot.mail": {
+          "type": "string",
+					"default": null,
+          "description": "Mail address override environment variable."
+        }
+      }
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",

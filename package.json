@@ -21,19 +21,19 @@
 			}
 		],
 		"configuration": {
-      "title": "42 Header OneShot",
-      "properties": {
-        "42-header-oneshot.user": {
-          "type": "string",
-          "description": "User name override environment variable."
-        },
-        "42-header-oneshot.mail": {
-          "type": "string",
+			"title": "42 Header OneShot",
+			"properties": {
+				"42-header-oneshot.user": {
+					"type": "string",
+					"description": "User name override environment variable."
+				},
+				"42-header-oneshot.mail": {
+					"type": "string",
 					"default": null,
-          "description": "Mail address override environment variable."
-        }
-      }
-    }
+					"description": "Mail address override environment variable."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
@@ -62,5 +62,8 @@
 		"typescript": "^4.4.4",
 		"webpack": "^5.52.1",
 		"webpack-cli": "^4.8.0"
+	},
+	"dependencies": {
+		"moment": "^2.29.1"
 	}
 }

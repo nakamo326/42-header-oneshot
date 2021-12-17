@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { makeHeader } from './makeHeader';
+import * as moment from 'moment';
 
 // prettier-ignore
 const headLine = 
@@ -35,6 +36,7 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
   }
 }
 
+// TODO regular expansion "/^\/\* \*{74} \*\/$/"
 async function isHeader(file: vscode.Uri): Promise<string | boolean> {
   const content = await vscode.workspace.fs.readFile(file);
   const text = content.toString();
@@ -58,21 +60,7 @@ function modifyLength(str: string, targetLen: number, isMail = false) {
 }
 
 function getFormattedTime(unixTime: number) {
-  const dateTime = new Date(unixTime);
-  const month =
-    dateTime.getMonth() + 1 <= 9 ? '0' + (dateTime.getMonth() + 1) : dateTime.getMonth() + 1;
-  const day = dateTime.getDay() <= 9 ? '0' + dateTime.getDay() : dateTime.getDay();
-  return (
-    dateTime.getFullYear() +
-    '/' +
-    month +
-    '/' +
-    day +
-    ' ' +
-    dateTime.getHours() +
-    ':' +
-    dateTime.getMinutes() +
-    ':' +
-    dateTime.getSeconds()
-  );
+  const dateTime = moment(unixTime);
+  console.log(dateTime.format('YYYY/MM/DD HH:MM:SS'));
+  return dateTime.format('YYYY/MM/DD HH:MM:SS').toString();
 }

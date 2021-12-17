@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 import { env } from 'process';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('42-header-oneshot.addHeader', () => {
@@ -20,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     `;
 
+    // get user and mail
     const [user, mail] = getConfig();
     if (user === undefined || mail === undefined) {
       vscode.window.showErrorMessage(
@@ -29,6 +32,12 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
     console.log(`USER is ${user} and MAIL is ${mail}`);
+
+    // get file path array
+    const target = getFilePath();
+
+    //add header to all target file with async
+    //stats.birthtime, stats.mtime
   });
 
   context.subscriptions.push(disposable);
@@ -53,3 +62,6 @@ function getConfig(): [string | undefined, string | undefined] {
   const mail: string | undefined = mailConfig !== '' ? mailConfig : mailEnv;
   return [user, mail];
 }
+
+// if user open multi workspace, choose by showWorkspaceFolderPick method
+function getFilePath() {}

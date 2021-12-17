@@ -1,8 +1,5 @@
 import * as vscode from 'vscode';
 import { env } from 'process';
-import * as fs from 'fs';
-import * as path from 'path';
-import { resolve } from 'path';
 
 const rowLen = 80;
 // prettier-ignore
@@ -37,10 +34,12 @@ export function activate(context: vscode.ExtensionContext) {
     // get file path array
     const target = await getTarget();
     console.log(target);
+    if (!target) {
+      return;
+    }
 
     //add header to all target file with async
-    //stats.birthtime, stats.mtime
-    // if there are header already, skip them
+    await addHeader(target);
   });
 
   context.subscriptions.push(disposable);
@@ -89,4 +88,30 @@ function getWorkspace(): Thenable<vscode.WorkspaceFolder | undefined> {
     return Promise.resolve(vscode.workspace.workspaceFolders[0]);
   }
   return vscode.window.showWorkspaceFolderPick();
+}
+
+// if there are header already, skip them
+async function addHeader(target: vscode.Uri[]) {
+  for await (const file of target) {
+    const stats = await vscode.workspace.fs.stat(file);
+    const timeCreated = getFormattedTime(stats.ctime);
+    const timeUpdated = getFormattedTime(stats.mtime);
+  }
+}
+
+function getFormattedTime(unixTime: number) {
+  const dateTime = new Date(unixTime);
+  return (
+    dateTime.getFullYear() +
+    '/' +
+    (dateTime.getMonth() + 1) +
+    '/' +
+    dateTime.getDay() +
+    ' ' +
+    dateTime.getHours() +
+    ':' +
+    dateTime.getMinutes() +
+    ':' +
+    dateTime.getSeconds()
+  );
 }

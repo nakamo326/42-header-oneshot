@@ -18,7 +18,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     // get file path array
     const target = await getTarget();
-    console.log(target);
     if (!target) {
       return;
     }

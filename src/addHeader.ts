@@ -23,9 +23,9 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
     const timeUpdated = getFormattedTime(stats.mtime);
 
     const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
-    const outputText = header + text;
-    const outputBuf = Uint8Array.from(Buffer.from(outputText));
+    const outputBuf = Uint8Array.from(Buffer.from(header + text));
     await vscode.workspace.fs.writeFile(file, outputBuf);
+    console.log(`${path.basename(file.path)} is added header!`);
   }
 }
 
@@ -35,8 +35,8 @@ async function isHeader(file: vscode.Uri): Promise<string | boolean> {
   const innerPattern = new RegExp(/^\/\* .{74} \*\/$/);
   const content = await vscode.workspace.fs.readFile(file);
   const text = content.toString();
-  const lines = text.split('\n');
-  for (let i = 0; i < 11; i++) {
+  const lines = text.split('\n', 11);
+  for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if ((i === 0 || i === 10) && line.match(outsidePattern)) {
       continue;

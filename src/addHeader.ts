@@ -29,7 +29,9 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
     const timeUpdated = getFormattedTime(stats.mtime);
 
     const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
-    console.log(header);
+    const outputText = header + text;
+    const outputBuf = Uint8Array.from(Buffer.from(outputText));
+    await vscode.workspace.fs.writeFile(file, outputBuf);
   }
 }
 

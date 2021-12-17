@@ -28,7 +28,7 @@ export function makeHeader(
 /*                                                        :::      ::::::::   */
 /*   ${modFile}          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ${modUser} <${modMail}>      +#+  +:+       +#+        */
+/*   By: ${modUser} <${modMail}      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: ${timeCreated} by ${modUser}         #+#    #+#             */
 /*   Updated: ${timeUpdated} by ${modUser}        ###   ########.fr       */

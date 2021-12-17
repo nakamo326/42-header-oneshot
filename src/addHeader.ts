@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { makeHeader } from './makeHeader';
 
 // prettier-ignore
 const headLine = 
@@ -19,12 +20,14 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
       continue;
     }
 
-    const modifiedFilename = modifyLength(path.basename(file.path), fileNameLen);
-    const modifiedUser = modifyLength(user, userLen);
-    const modifiedMail = modifyLength(mail, mailLen);
+    const modFile = modifyLength(path.basename(file.path), fileNameLen);
+    const modUser = modifyLength(user, userLen);
+    const modMail = modifyLength(mail, mailLen);
     const stats = await vscode.workspace.fs.stat(file);
     const timeCreated = getFormattedTime(stats.ctime);
     const timeUpdated = getFormattedTime(stats.mtime);
+
+    const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
   }
 }
 

@@ -1,7 +1,8 @@
 {
 	"name": "42-header-oneshot",
 	"displayName": "42 Header OneShot",
-	"description": "You don't need to add 42 header every single file.",
+	"description": "add 42 header to all sources in workspace",
+	"publisher": "nakamo326",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.63.0"
@@ -33,7 +34,14 @@
 					"description": "Mail address override environment variable."
 				}
 			}
-		}
+		},
+		"keybindings":[
+			{
+				"command": "42-header-oneshot.addHeader",
+				"key": "ctrl+alt+o",
+				"mac": "cmd+alt+o"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",

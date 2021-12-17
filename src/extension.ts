@@ -1,22 +1,7 @@
 import * as vscode from 'vscode';
-import { env } from 'process';
-
-const rowLen = 80;
-// prettier-ignore
-const template =
-`/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   $file                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: $user <$mail>                              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 21:44:53 by $user             #+#    #+#             */
-/*   Updated: 2021/12/15 21:44:57 by $user            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-`;
+import { getConfig } from './getConfig';
+import { getTarget } from './getTarget';
+import { addHeader } from './addHeader';
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('42-header-oneshot.addHeader', async () => {
@@ -46,76 +31,3 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
-
-function getConfig(): [string | undefined, string | undefined] {
-  // if there are no input in config, return is empty string.
-  const userConfig: string | undefined = vscode.workspace
-    .getConfiguration()
-    .get('42-header-oneshot.user');
-  const mailConfig: string | undefined = vscode.workspace
-    .getConfiguration()
-    .get('42-header-oneshot.mail');
-
-  const user: string | undefined = userConfig !== '' ? userConfig : env.USER;
-  const mail: string | undefined = mailConfig !== '' ? mailConfig : env.MAIL;
-  return [user, mail];
-}
-
-async function getTarget() {
-  let workspace;
-  await getWorkspace().then((ret) => {
-    workspace = ret?.uri.path;
-  });
-  console.log(workspace);
-  if (!workspace) {
-    return undefined;
-  }
-  const pattern = new vscode.RelativePattern(workspace, '**/*.{c,h,cpp,hpp}');
-  const uris = await vscode.workspace.findFiles(pattern, null);
-  return uris;
-}
-
-// if user open multi workspace, choose by showWorkspaceFolderPick method
-function getWorkspace(): Thenable<vscode.WorkspaceFolder | undefined> {
-  if (!vscode.workspace.workspaceFolders) {
-    vscode.window.showInformationMessage('please open workspace.');
-    return Promise.reject(undefined);
-  } else if (vscode.workspace.workspaceFolders.length === 1) {
-    return Promise.resolve(vscode.workspace.workspaceFolders[0]);
-  }
-  return vscode.window.showWorkspaceFolderPick();
-}
-
-async function addHeader(target: vscode.Uri[]) {
-  for await (const file of target) {
-    // check there is header already, then skip
-    if (isHeader()) {
-      continue;
-    }
-
-    const stats = await vscode.workspace.fs.stat(file);
-    const timeCreated = getFormattedTime(stats.ctime);
-    const timeUpdated = getFormattedTime(stats.mtime);
-  }
-}
-
-function isHeader(): boolean {
-  return true;
-}
-
-function getFormattedTime(unixTime: number) {
-  const dateTime = new Date(unixTime);
-  return (
-    dateTime.getFullYear() +
-    '/' +
-    (dateTime.getMonth() + 1) +
-    '/' +
-    dateTime.getDay() +
-    ' ' +
-    dateTime.getHours() +
-    ':' +
-    dateTime.getMinutes() +
-    ':' +
-    dateTime.getSeconds()
-  );
-}

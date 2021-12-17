@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 // prettier-ignore
 const headLine = 
@@ -7,6 +8,10 @@ const headLine =
 /*                                                        :::      ::::::::   */`;
 
 export async function addHeader(target: vscode.Uri[], user: string, mail: string) {
+  const userLen = 9;
+  const mailLen = 25;
+  const fileNameLen = 41;
+
   for await (const file of target) {
     // check there is header already, then skip
     if (await isHeader(file)) {
@@ -14,6 +19,9 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
       continue;
     }
 
+    const modifiedFilename = modifyLength(path.basename(file.path), fileNameLen);
+    const modifiedUser = modifyLength(user, userLen);
+    const modifiedMail = modifyLength(mail, mailLen);
     const stats = await vscode.workspace.fs.stat(file);
     const timeCreated = getFormattedTime(stats.ctime);
     const timeUpdated = getFormattedTime(stats.mtime);
@@ -24,6 +32,16 @@ async function isHeader(file: vscode.Uri): Promise<boolean> {
   const content = await vscode.workspace.fs.readFile(file);
   const text = content.toString();
   return text.includes(headLine, 0);
+}
+
+function modifyLength(str: string, targetLen: number) {
+  if (str.length >= targetLen) {
+    return str.substring(0, targetLen);
+  }
+  while (str.length < targetLen) {
+    str += ' ';
+  }
+  return str;
 }
 
 function getFormattedTime(unixTime: number) {

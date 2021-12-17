@@ -6,7 +6,6 @@ import { addHeader } from './addHeader';
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('42-header-oneshot.addHeader', async () => {
     // get user and mail
-    //  TODO TRUNC USER 9 CHARS
     const [user, mail] = getConfig();
     if (user === undefined || mail === undefined) {
       vscode.window.showErrorMessage(

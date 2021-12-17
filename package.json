@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:42-header-oneshot.helloWorld"
+		"onCommand:42-header-oneshot.addHeader"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "42-header-oneshot.helloWorld",
-				"title": "Hello World"
+				"command": "42-header-oneshot.addHeader",
+				"title": "Add 42 heder to all file in workspace"
 			}
 		]
 	},

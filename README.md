@@ -1,6 +1,6 @@
 # 42-header-oneshot
 
-![demo.gif](https://github.com/nakamo326/42-header-oneshot/blob/main/demo.gif)
+![demo.gif](https://raw.githubusercontent.com/nakamo326/42-header-oneshot/main/demo.gif)
 
 You don't have to add 42 headers to every single file!\
 Just one command, your all sources will get header.

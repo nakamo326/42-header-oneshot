@@ -34,5 +34,5 @@ To override therse value, this extension contributes the following settings:
 ## Known Issues
 
 This extension is not tested much.\
-If you want to use this extension. Please be careful.\
+If you want to use this extension, Please be careful.\
 Push local change to remote repo before execute!

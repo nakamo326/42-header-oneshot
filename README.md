@@ -1,70 +1,36 @@
-# 42-header-oneshot README
+# 42-header-oneshot
 
-This is the README for your extension "42-header-oneshot". After writing up a brief description, we recommend including the following sections.
+You don't have to add 42 headers to every single file!\
+Just one command, your all sources will get header.
 
-## Features
+## Usage
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Insert header to your all source files.
 
-For example if there is an image subfolder under your extension project workspace:
+Open command palette (Ctrl + shift + P)
 
-\!\[feature X\]\(images/feature-x.png\)
+input "Add 42 heder to all sources in workspace" and execute command.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+If you open multi workspace, please choose workspace you want to add header.
 
-## Requirements
+#### Keyboard ShortCut
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **macOS** : <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd>
+- **Linux** / **Windows** : <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>.
 
-## Extension Settings
+> Current target file type is .c, .h, .cpp and .hpp.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Configurations
 
-For example:
+Default values for **username** and **email** are imported from environment variables.
 
-This extension contributes the following settings:
+To override therse value, this extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+- `42-header-oneshot.user`
+- `42-header-oneshot.mail`
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This extension is not tested much.\
+If you want to use this extension. Please be careful.\
+Push local change to remote repo before execute!

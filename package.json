@@ -18,7 +18,7 @@
 		"commands": [
 			{
 				"command": "42-header-oneshot.addHeader",
-				"title": "Add 42 heder to all file in workspace"
+				"title": "Add 42 heder to all sources in workspace"
 			}
 		],
 		"configuration": {

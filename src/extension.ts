@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getConfig } from './getConfig';
+import { getUser, getMail } from './getConfig';
 import { getTarget } from './getTarget';
 import { addHeader } from './addHeader';
 
@@ -7,7 +7,8 @@ import { addHeader } from './addHeader';
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('42-header-oneshot.addHeader', async () => {
     // get user and mail
-    const [user, mail] = getConfig();
+    const user = getUser();
+    const mail = getMail();
     if (user === undefined || mail === undefined) {
       vscode.window.showErrorMessage(
         `User or Mail doesn't exist in environment variables and configurations.

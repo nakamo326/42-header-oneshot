@@ -1,15 +1,30 @@
 import * as assert from 'assert';
 
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
 import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
+import { getUser, getMail } from '../../getConfig';
+import { env } from 'process';
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+  vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
-	});
+  test('getUser test', async () => {
+    env.USER = 'testuserenv';
+    assert.strictEqual(getUser(), 'testuserenv');
+
+    // await vscode.commands.executeCommand('vscode.openFolder',);
+    // let settings = vscode.workspace.getConfiguration('42-header-oneshot');
+    // await settings.update('user', 'testuser');
+    // assert.strictEqual(getUser(), 'testuser');
+
+    delete env.USER;
+    assert.strictEqual(undefined, getUser());
+  });
+
+  test('getMail test', () => {
+    env.MAIL = 'testuser@student.42tokyo.jp';
+    assert.strictEqual(getMail(), 'testuser@student.42tokyo.jp');
+
+    delete env.MAIL;
+    assert.strictEqual(getMail(), undefined);
+  });
 });

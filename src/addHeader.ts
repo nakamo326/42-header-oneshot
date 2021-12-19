@@ -8,25 +8,27 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
   const mailLen = 26;
   const fileNameLen = 41;
 
-  for await (const file of target) {
-    const text = await isHeader(file);
-    if (text === false) {
-      // console.log(`${file.path} is skipped!`);
-      continue;
-    }
+  await Promise.all(
+    target.map(async (file) => {
+      const text = await isHeader(file);
+      if (text === false) {
+        // console.log(`${file.path} is skipped!`);
+        return;
+      }
 
-    const modFile = modifyLength(path.basename(file.path), fileNameLen);
-    const modUser = modifyLength(user, userLen);
-    const modMail = modifyLength(mail, mailLen, true);
-    const stats = await vscode.workspace.fs.stat(file);
-    const timeCreated = getFormattedTime(stats.ctime);
-    const timeUpdated = getFormattedTime(stats.mtime);
+      const modFile = modifyLength(path.basename(file.path), fileNameLen);
+      const modUser = modifyLength(user, userLen);
+      const modMail = modifyLength(mail, mailLen, true);
+      const stats = await vscode.workspace.fs.stat(file);
+      const timeCreated = getFormattedTime(stats.ctime);
+      const timeUpdated = getFormattedTime(stats.mtime);
 
-    const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
-    const outputBuf = Uint8Array.from(Buffer.from(header + text));
-    await vscode.workspace.fs.writeFile(file, outputBuf);
-    console.log(`${path.basename(file.path)} is added header!`);
-  }
+      const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
+      const outputBuf = Uint8Array.from(Buffer.from(header + text));
+      await vscode.workspace.fs.writeFile(file, outputBuf);
+      console.log(`${path.basename(file.path)} is added header!`);
+    }),
+  );
 }
 
 // if there is header already, return false. if not return their context.

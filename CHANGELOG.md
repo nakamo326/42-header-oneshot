@@ -12,7 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Fixed README.md.
 
-## Added
+### Added
 
 - Added small refactoring.
 

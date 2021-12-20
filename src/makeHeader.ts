@@ -22,7 +22,7 @@ export function makeHeader(
   timeUpdated: string,
 ): string {
   // prettier-ignore
-  const header =
+  return (
 `/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -35,7 +35,5 @@ export function makeHeader(
 /*                                                                            */
 /* ************************************************************************** */
 
-`;
-
-  return header;
+`);
 }

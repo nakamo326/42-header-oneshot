@@ -30,9 +30,3 @@ To override therse value, this extension contributes the following settings:
 
 - `42-header-oneshot.user`
 - `42-header-oneshot.mail`
-
-## Known Issues
-
-This extension is not tested much.\
-If you want to use this extension, Please be careful.\
-Push local change to remote repo before execute!

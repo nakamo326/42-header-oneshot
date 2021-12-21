@@ -10,44 +10,45 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
 
   await Promise.all(
     target.map(async (file) => {
-      const text = await isHeader(file);
-      if (text === false) {
-        // console.log(`${file.path} is skipped!`);
-        return;
-      }
+      const t = vscode.workspace.fs.readFile(file);
+      const s = vscode.workspace.fs.stat(file);
 
       const modFile = modifyLength(path.basename(file.path), fileNameLen);
       const modUser = modifyLength(user, userLen);
       const modMail = modifyLength(mail, mailLen, true);
-      const stats = await vscode.workspace.fs.stat(file);
+      const stats = await s;
       const timeCreated = getFormattedTime(stats.ctime);
       const timeUpdated = getFormattedTime(stats.mtime);
+
+      const text = (await t).toString();
+      if (isHeader(text)) {
+        // console.log(`${file.path} is skipped!`);
+        return;
+      }
 
       const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
       const outputBuf = Uint8Array.from(Buffer.from(header + text));
       await vscode.workspace.fs.writeFile(file, outputBuf);
-      console.log(`${path.basename(file.path)} is added header!`);
+      // console.log(`${path.basename(file.path)} is added header!`);
     }),
   );
 }
 
-// if there is header already, return false. if not return their context.
-async function isHeader(file: vscode.Uri): Promise<string | boolean> {
+// if there is header already, return true. if not return false.
+function isHeader(text: string): boolean {
   const outsidePattern = new RegExp(/^\/\* \*{74} \*\/$/);
   const innerPattern = new RegExp(/^\/\* .{74} \*\/$/);
-  const content = await vscode.workspace.fs.readFile(file);
-  const text = content.toString();
   const lines = text.split('\n', 11);
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if ((i === 0 || i === 10) && line.match(outsidePattern)) {
       continue;
-    } else if (line.match(innerPattern)) {
+    } else if ((i > 0 || i < 10) && line.match(innerPattern)) {
       continue;
     }
-    return text;
+    return false;
   }
-  return false;
+  return true;
 }
 
 function modifyLength(str: string, targetLen: number, isMail = false) {

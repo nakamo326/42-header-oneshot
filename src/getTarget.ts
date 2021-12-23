@@ -18,7 +18,7 @@ export async function getTarget() {
 function getWorkspace(): Thenable<vscode.WorkspaceFolder | undefined> {
   if (!vscode.workspace.workspaceFolders) {
     vscode.window.showInformationMessage('please open workspace.');
-    return Promise.reject(undefined);
+    return Promise.resolve(undefined);
   } else if (vscode.workspace.workspaceFolders.length === 1) {
     return Promise.resolve(vscode.workspace.workspaceFolders[0]);
   }

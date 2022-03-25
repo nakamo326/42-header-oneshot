@@ -8,14 +8,15 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
   const mailLen = 26;
   const fileNameLen = 41;
 
+  const filledUser = fillString(user, userLen);
+  const filledMail = fillString(mail, mailLen, true);
+
   await Promise.all(
     target.map(async (file) => {
       const t = vscode.workspace.fs.readFile(file);
       const s = vscode.workspace.fs.stat(file);
 
-      const modFile = modifyLength(path.basename(file.path), fileNameLen);
-      const modUser = modifyLength(user, userLen);
-      const modMail = modifyLength(mail, mailLen, true);
+      const filledFile = fillString(path.basename(file.path), fileNameLen);
       const stats = await s;
       const timeCreated = getFormattedTime(stats.ctime);
       const timeUpdated = getFormattedTime(stats.mtime);
@@ -26,7 +27,7 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
         return;
       }
 
-      const header = makeHeader(modFile, modUser, modMail, timeCreated, timeUpdated);
+      const header = makeHeader(filledFile, filledUser, filledMail, timeCreated, timeUpdated);
       const outputBuf = Uint8Array.from(Buffer.from(header + text));
       await vscode.workspace.fs.writeFile(file, outputBuf);
       // console.log(`${path.basename(file.path)} is added header!`);
@@ -51,7 +52,7 @@ function isHeader(text: string): boolean {
   return true;
 }
 
-function modifyLength(str: string, targetLen: number, isMail = false) {
+function fillString(str: string, targetLen: number, isMail = false) {
   if (str.length >= targetLen) {
     return str.substring(0, targetLen);
   }
@@ -65,6 +66,5 @@ function modifyLength(str: string, targetLen: number, isMail = false) {
 }
 
 function getFormattedTime(unixTime: number) {
-  const dateTime = moment(unixTime);
-  return dateTime.format('YYYY/MM/DD HH:mm:ss').toString();
+  return moment(unixTime).format('YYYY/MM/DD HH:mm:ss').toString();
 }

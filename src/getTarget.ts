@@ -6,8 +6,7 @@ export async function getTarget() {
     return undefined;
   }
   const pattern = new vscode.RelativePattern(workspace.uri.path, '**/*.{c,h,cpp,hpp}');
-  const uris = await vscode.workspace.findFiles(pattern, null);
-  return uris;
+  return await vscode.workspace.findFiles(pattern, null);
 }
 
 async function getWorkspace(): Promise<vscode.WorkspaceFolder | undefined> {

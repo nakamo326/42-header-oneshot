@@ -15,9 +15,9 @@
 // `;
 
 export function makeHeader(
-  modFile: string,
-  modUser: string,
-  modMail: string,
+  file: string,
+  user: string,
+  mail: string,
   timeCreated: string,
   timeUpdated: string,
 ): string {
@@ -26,12 +26,12 @@ export function makeHeader(
 `/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ${modFile                               }          :+:      :+:    :+:   */
+/*   ${file                                  }          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ${modUser} <${modMail               }      +#+  +:+       +#+        */
+/*   By: ${user   } <${mail                  }      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: ${timeCreated} by ${modUser    }         #+#    #+#             */
-/*   Updated: ${timeUpdated} by ${modUser    }        ###   ########.fr       */
+/*   Created: ${timeCreated} by ${user       }         #+#    #+#             */
+/*   Updated: ${timeUpdated} by ${user       }        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

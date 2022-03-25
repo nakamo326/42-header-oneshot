@@ -9,7 +9,7 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
   const fileNameLen = 41;
 
   const filledUser = fillString(user, userLen);
-  const filledMail = fillString(mail, mailLen, true);
+  const filledMail = fillString(mail + '>', mailLen);
 
   await Promise.all(
     target.map(async (file) => {
@@ -22,7 +22,7 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
       const timeUpdated = getFormattedTime(stats.mtime);
 
       const text = (await t).toString();
-      if (isHeader(text)) {
+      if (hasHeader(text)) {
         // console.log(`${file.path} is skipped!`);
         return;
       }
@@ -36,33 +36,26 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
 }
 
 // if there is header already, return true. if not return false.
-function isHeader(text: string): boolean {
+function hasHeader(text: string): boolean {
   const outsidePattern = new RegExp(/^\/\* \*{74} \*\/$/);
   const innerPattern = new RegExp(/^\/\* .{74} \*\/$/);
   const lines = text.split('\n', 11);
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if ((i === 0 || i === 10) && line.match(outsidePattern)) {
-      continue;
-    } else if ((i > 0 || i < 10) && line.match(innerPattern)) {
-      continue;
+    if ((i === 0 || i === 10) && !line.match(outsidePattern)) {
+      return false;
+    } else if ((i > 0 || i < 10) && !line.match(innerPattern)) {
+      return false;
     }
-    return false;
   }
   return true;
 }
 
-function fillString(str: string, targetLen: number, isMail = false) {
-  if (str.length >= targetLen) {
+function fillString(str: string, targetLen: number) {
+  if (str.length > targetLen) {
     return str.substring(0, targetLen);
   }
-  if (isMail) {
-    str += '>';
-  }
-  while (str.length < targetLen) {
-    str += ' ';
-  }
-  return str;
+  return str + ' '.repeat(targetLen - str.length);
 }
 
 function getFormattedTime(unixTime: number) {

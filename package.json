@@ -36,7 +36,7 @@
 				}
 			}
 		},
-		"keybindings":[
+		"keybindings": [
 			{
 				"command": "42-header-oneshot.addHeader",
 				"key": "ctrl+alt+o",
@@ -76,7 +76,7 @@
 		"moment": "^2.29.1"
 	},
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/nakamo326/42-header-oneshot"
-  }
+		"type": "git",
+		"url": "https://github.com/nakamo326/42-header-oneshot"
+	}
 }

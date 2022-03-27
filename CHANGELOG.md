@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.5] - 2021-03-27
+
+### Added
+
+- Added delete command.
+
 ## [0.0.4] - 2021-12-20
 
 ### Fixed

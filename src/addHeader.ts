@@ -5,11 +5,11 @@ import * as moment from 'moment';
 
 export async function addHeader(target: vscode.Uri[], user: string, mail: string) {
   const userLen = 9;
-  const mailLen = 26;
+  const mailLen = 25;
   const fileNameLen = 41;
 
   const filledUser = fillString(user, userLen);
-  const filledMail = fillString(mail + '>', mailLen);
+  const filledMail = fillString(mail, mailLen);
 
   await Promise.all(
     target.map(async (file) => {
@@ -18,8 +18,8 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
 
       const filledFile = fillString(path.basename(file.path), fileNameLen);
       const stats = await s;
-      const timeCreated = getFormattedTime(stats.ctime);
-      const timeUpdated = getFormattedTime(stats.mtime);
+      const timeCreated = moment(stats.ctime).format('YYYY/MM/DD HH:mm:ss').toString();
+      const timeUpdated = moment(stats.mtime).format('YYYY/MM/DD HH:mm:ss').toString();
 
       const text = (await t).toString();
       if (hasHeader(text)) {
@@ -56,8 +56,4 @@ function fillString(str: string, targetLen: number) {
     return str.substring(0, targetLen);
   }
   return str + ' '.repeat(targetLen - str.length);
-}
-
-function getFormattedTime(unixTime: number) {
-  return moment(unixTime).format('YYYY/MM/DD HH:mm:ss').toString();
 }

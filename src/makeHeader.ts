@@ -28,7 +28,7 @@ export function makeHeader(
 /*                                                        :::      ::::::::   */
 /*   ${file                                  }          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ${user   } <${mail                  }      +#+  +:+       +#+        */
+/*   By: ${user   } <${mail                 }>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: ${timeCreated} by ${user       }         #+#    #+#             */
 /*   Updated: ${timeUpdated} by ${user       }        ###   ########.fr       */

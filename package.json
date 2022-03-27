@@ -45,6 +45,11 @@
 				"command": "42-header-oneshot.addHeader",
 				"key": "ctrl+alt+o",
 				"mac": "cmd+alt+o"
+			},
+			{
+				"command": "42-header-oneshot.deleteHeader",
+				"key": "ctrl+alt+d",
+				"mac": "cmd+alt+d"
 			}
 		]
 	},

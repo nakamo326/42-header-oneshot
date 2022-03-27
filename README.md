@@ -9,16 +9,27 @@ Just one command, your all sources will get header.
 
 ### Insert header to your all source files.
 
-Open command palette (Ctrl + shift + P)
-
-input "Add 42 heder to all sources in workspace" and execute command.
-
+Open command palette (Ctrl + shift + P)\
+Input "Add 42 heder to all sources in workspace" and execute command.\
 If you open multi workspace, please choose workspace you want to add header.
 
-#### Keyboard ShortCut
+### Delete header to your all source files.
+
+You can delete all of header as well as inserting.\
+Execute "Delete 42 heder to all sources in workspace" from command palette.
+
+
+### Keyboard ShortCut
+
+### Insert Header
 
 - **macOS** : <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd>
-- **Linux** / **Windows** : <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>.
+- **Linux** / **Windows** : <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
+
+### Delete Header
+
+- **macOS** : <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>D</kbd>
+- **Linux** / **Windows** : <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd>
 
 > Current target file type is .c, .h, .cpp and .hpp.
 

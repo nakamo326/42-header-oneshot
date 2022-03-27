@@ -25,7 +25,7 @@ export async function addHeaderHandler() {
 
   //add header to all target file with async
   await addHeader(target, user, mail);
-  vscode.window.showInformationMessage('Inserted Header successfully!');
+  vscode.window.showInformationMessage('Inserted header successfully!');
   const end = process.hrtime(start);
   console.info('Execution time (hr): %ds %dms', end[0], end[1] / 1000000);
 }

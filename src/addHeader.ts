@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { hasHeader } from './hasHeader';
 import { makeHeader } from './makeHeader';
 import * as moment from 'moment';
 
@@ -33,22 +34,6 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
       // console.log(`${path.basename(file.path)} is added header!`);
     }),
   );
-}
-
-// if there is header already, return true. if not return false.
-function hasHeader(text: string): boolean {
-  const outsidePattern = new RegExp(/^\/\* \*{74} \*\/$/);
-  const innerPattern = new RegExp(/^\/\* .{74} \*\/$/);
-  const lines = text.split('\n', 11);
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if ((i === 0 || i === 10) && !line.match(outsidePattern)) {
-      return false;
-    } else if ((i > 0 || i < 10) && !line.match(innerPattern)) {
-      return false;
-    }
-  }
-  return true;
 }
 
 function fillString(str: string, targetLen: number) {

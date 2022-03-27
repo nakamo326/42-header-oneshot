@@ -20,6 +20,10 @@
 			{
 				"command": "42-header-oneshot.addHeader",
 				"title": "Add 42 heder to all sources in workspace"
+			},
+			{
+				"command": "42-header-oneshot.deleteHeader",
+				"title": "Delete 42 heder to all sources in workspace"
 			}
 		],
 		"configuration": {

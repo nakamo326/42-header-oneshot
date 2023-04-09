@@ -82,7 +82,7 @@
 		"webpack-cli": "^5.0.1"
 	},
 	"dependencies": {
-		"moment": "^2.29.1"
+		"moment": "^2.29.4"
 	},
 	"repository": {
 		"type": "git",

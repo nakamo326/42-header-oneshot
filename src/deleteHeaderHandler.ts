@@ -3,6 +3,7 @@ import { getTarget } from './getTarget';
 import { deleteHeader } from './deleteHeader';
 
 export async function deleteHeaderHandler() {
+  console.info('start deleting 42 header by 42-header-oneshot');
   const start = process.hrtime();
   // get file path array
   const target = await getTarget();

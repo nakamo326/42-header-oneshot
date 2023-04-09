@@ -4,6 +4,7 @@ import { getTarget } from './getTarget';
 import { addHeader } from './addHeader';
 
 export async function addHeaderHandler() {
+  console.info('start adding 42 header by 42-header-oneshot');
   const start = process.hrtime();
   // get user and mail
   const user = getUser();

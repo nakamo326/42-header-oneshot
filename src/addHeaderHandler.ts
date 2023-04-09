@@ -21,6 +21,7 @@ export async function addHeaderHandler() {
   // get file path array
   const target = await getTarget();
   if (!target) {
+    vscode.window.showInformationMessage("Couldn't find target file in workspace.");
     return;
   }
 

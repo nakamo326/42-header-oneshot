@@ -12,7 +12,7 @@ export async function deleteHeader(target: vscode.Uri[]) {
       }
 
       const outputBuf = Uint8Array.from(Buffer.from(text.split('\n').slice(12).join('\n')));
-      await vscode.workspace.fs.writeFile(file, outputBuf);
+      vscode.workspace.fs.writeFile(file, outputBuf);
       // console.log(`${path.basename(file.path)} is added header!`);
     }),
   );

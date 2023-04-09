@@ -30,7 +30,7 @@ export async function addHeader(target: vscode.Uri[], user: string, mail: string
 
       const header = makeHeader(filledFile, filledUser, filledMail, timeCreated, timeUpdated);
       const outputBuf = Uint8Array.from(Buffer.from(header + text));
-      await vscode.workspace.fs.writeFile(file, outputBuf);
+      vscode.workspace.fs.writeFile(file, outputBuf);
       // console.log(`${path.basename(file.path)} is added header!`);
     }),
   );

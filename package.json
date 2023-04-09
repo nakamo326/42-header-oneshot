@@ -3,7 +3,7 @@
 	"displayName": "42 Header OneShot",
 	"description": "add 42 header to all sources in workspace",
 	"publisher": "nakamo326",
-	"version": "0.0.5",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.63.0"
 	},

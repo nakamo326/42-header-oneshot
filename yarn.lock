@@ -11,7 +11,7 @@ __metadata:
   dependencies:
     "@types/glob": ^7.1.4
     "@types/mocha": ^9.0.0
-    "@types/node": 14.x
+    "@types/node": 18.x
     "@types/vscode": ^1.63.0
     "@typescript-eslint/eslint-plugin": ^5.1.0
     "@typescript-eslint/parser": ^5.57.1
@@ -294,17 +294,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:18.x":
   version: 18.15.11
   resolution: "@types/node@npm:18.15.11"
   checksum: 2ad6c7aeb0841a821d5f0556ccbc9c0cec597cb31b5fe58b085740983f6b01a21a3c62c37ca642dd92b5de8935d6084896634af19f1f022e8d173049ad258a60
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:14.x":
-  version: 14.18.42
-  resolution: "@types/node@npm:14.18.42"
-  checksum: e446ccdda5e101f5e9e32dc5b3a8eb84f20092265f1934a03397fc80d92d8941ede39fea5fae02949bbbad28c9ea6082e12cfce5f8abae3274ba29ae1b825d79
   languageName: node
   linkType: hard
 

@@ -12,7 +12,7 @@ __metadata:
     "@types/glob": ^7.1.4
     "@types/mocha": ^10.0.1
     "@types/node": 20.x
-    "@types/vscode": ^1.63.0
+    "@types/vscode": ^1.81.0
     "@typescript-eslint/eslint-plugin": ^5.60.1
     "@typescript-eslint/parser": ^6.4.0
     "@vscode/test-electron": ^2.3.3
@@ -329,10 +329,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/vscode@npm:^1.63.0":
-  version: 1.77.0
-  resolution: "@types/vscode@npm:1.77.0"
-  checksum: 169dbced32d3f84aad6a41f0d099343ff2a2a86005e309e48192db500cd846423e0e5848f20a6c1aab71329915423255dd9a083974d6f3eb4bb085c278435b98
+"@types/vscode@npm:^1.81.0":
+  version: 1.81.0
+  resolution: "@types/vscode@npm:1.81.0"
+  checksum: 470b9aa74552fbeeaaee5ecba237d2ab12a18fe7c5411e073203af2e86644b9d40bb98fb3c35497a36591884a35e65e1e838f7fc07a5f9ac8dc537e4ec7fd378
   languageName: node
   linkType: hard
 

@@ -6,6 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.1.1] - 2023-09-09
+
+### Fixed
+
+- Updated dependencies.
+- Updated README
+
 ## [0.1.0] - 2022-04-09
 
 ### Fixed

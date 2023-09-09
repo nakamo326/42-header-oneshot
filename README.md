@@ -2,21 +2,21 @@
 
 ![demo.gif](https://raw.githubusercontent.com/nakamo326/42-header-oneshot/main/demo.gif)
 
-You don't have to add 42 headers to every single file!\
-Just one command, your all sources will get header.
+No need to manually add 42 headers to every single file!\
+With just one command, all your source files will be updated with the header.
 
 ## Usage
 
-### Insert header to your all source files.
+### Insert a Header to All Your Source Files
 
-Open command palette (Ctrl + shift + P)\
-Input "Add 42 heder to all sources in workspace" and execute command.\
-If you open multi workspace, please choose workspace you want to add header.
+1. Open the command palette with Ctrl + Shift + P.
+2. Type "Add 42 header to all sources in workspace" and execute the command.
+3. If you have multiple workspaces open, choose the workspace where you want to add the header.
 
-### Delete header to your all source files.
+### Remove Headers from All Your Source Files
 
-You can delete all of header as well as inserting.\
-Execute "Delete 42 heder to all sources in workspace" from command palette.
+1. Access the command palette.
+3. Execute "Delete 42 header from all sources in workspace."
 
 
 ### Keyboard ShortCut
@@ -31,13 +31,13 @@ Execute "Delete 42 heder to all sources in workspace" from command palette.
 - **macOS** : <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>D</kbd>
 - **Linux** / **Windows** : <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd>
 
-> Current target file type is .c, .h, .cpp and .hpp.
+> Currently, this extension targets the following file types: .c, .h, .cpp, and .hpp.
 
 ## Configurations
 
-Default values for **username** and **email** are imported from environment variables.
+By default, the **username** and **email** values are imported from environment variables.
 
-To override therse value, this extension contributes the following settings:
+To override these values, this extension offers the following settings:
 
 - `42-header-oneshot.user`
 - `42-header-oneshot.mail`
